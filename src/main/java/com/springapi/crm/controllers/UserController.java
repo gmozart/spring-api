@@ -2,8 +2,10 @@ package com.springapi.crm.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,16 +20,19 @@ public class UserController {
 	
 	public List<User> users = new ArrayList<>();
 
-	@GetMapping("/")
-	public User teste() {
+	@GetMapping("/{id}")
+	public User user(@PathVariable("id") Long id) {
 		
-		User user = new User();
+		Optional<User> userFind = users.stream().filter(user -> user.getId() == id).findFirst(); 
+				
+		if(userFind.isPresent()) {
+			
+			
+			return userFind.get();
+		}
 		
-		user.setId(1L);
-		user.setName("Gleison");
-		user.setUsername("gleisonmozart");
 		
-		return user;
+		return null;
 	}
 	
 	@PostMapping("/")
