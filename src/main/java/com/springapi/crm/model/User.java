@@ -18,7 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor //Cria os construtores com os argumentos
 @NoArgsConstructor //Cria os construtores sem os argumentos
 @Entity
-@Table
+@Table(name = "users")
 public class User {
 	
 	@Id
