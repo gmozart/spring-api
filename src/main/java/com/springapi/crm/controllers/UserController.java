@@ -65,4 +65,17 @@ public class UserController {
 		
 	}
 	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody User userNew, @PathVariable Long id) {
+		
+	  userNew.setId(id);
+	  userNew = userRepo.save(userNew);
+		
+				
+	
+		return ResponseEntity.noContent().build();
+	}
+	
+	
+	
 }
